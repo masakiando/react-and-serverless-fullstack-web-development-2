@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HighScores from './pages/HighScores';
+import Home from './pages/Home';
+import Game from './pages/Game';
+import GameOver from './pages/GameOver';
+import Navbar from './components/Navbar';
+import { GlobalStyle } from './styled/Global';
+import { Container } from './styled/Container';
+import { Main } from './styled/Main';
 
-class App extends Component {
-  render() {
+function App() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <Router>
+            <GlobalStyle />
+            <Main>
+                <Container>
+                    <Navbar />
+                    <Switch>
+                        <Route path="/game" component={Game} />
+                        <Route path="/highScores" component={HighScores} />
+                        <Route path="/gameOver" component={GameOver} />
+                        <Route path="/" component={Home} />
+                    </Switch>
+                </Container>
+            </Main>
+        </Router>
     );
-  }
 }
 
 export default App;
